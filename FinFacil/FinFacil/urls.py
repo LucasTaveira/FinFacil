@@ -27,7 +27,7 @@ from rest_framework_simplejwt.views import (
 )
 from rest_framework import routers
 
-from authentication.views import AuthenticationUserView
+from authentication.views import AuthenticationUserView, UserViewSet
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -42,8 +42,8 @@ schema_view = get_schema_view(
     permission_classes=(permissions.AllowAny,),
 )
 
-# router = routers.DefaultRouter()
-
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -52,7 +52,7 @@ urlpatterns = [
     path('api/v1/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/v1/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     
-    # path('api/v1/',include(router.urls)),
+    path('api/v1/',include(router.urls)),
     
     path('api/v1/signin/', AuthenticationUserView.as_view(), name='sign_in'),
 ]

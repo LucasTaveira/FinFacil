@@ -16,3 +16,17 @@ class AuthenticationUser(AbstractUser):
             self.set_password(self.password)
         super().save(*args, **kwargs)
         
+
+class User(models.Model):
+    class UserType(models.TextChoices):
+        user = 'U', 'USER'
+        api = 'A', 'API'       
+        
+    first_name = models.CharField(max_length=150, null=False)
+    last_name = models.CharField(max_length=150, null=True, blank=True)
+    whatsApp = models.CharField(max_length=30, null=True, blank=True)
+    user_type = models.CharField(max_length=1, null=False, choices=UserType.choices, default=UserType.user)
+    authenticator = models.ForeignKey(AuthenticationUser, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return f'{self.first_name} - {self.last_name} - {self.user_type}'

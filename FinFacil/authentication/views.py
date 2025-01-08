@@ -1,10 +1,9 @@
-from django.shortcuts import render
-
 from rest_framework import mixins, generics
 from rest_framework.permissions import AllowAny
+from rest_framework import viewsets
 
-from .models import AuthenticationUser
-from .serializers import AuthenticationUserSerializer
+from .models import AuthenticationUser, User
+from .serializers import AuthenticationUserSerializer, UserSerializer
 
 class AuthenticationUserView(
     mixins.CreateModelMixin, 
@@ -29,3 +28,23 @@ class AuthenticationUserView(
     def post(self, request, *args, **kwargs):
         return super().create(request, *args, **kwargs)
 
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    ### Description:
+        This model should be used to create a user
+        
+    ### Fields:
+        - first_name: The first name of the user
+        - last_name: The last name of the user (optional)
+        - whatsApp: phone number (optional)
+        - user_type: USER or API (API is for who whant to use this API)
+        
+    ### Methods:
+        - POST
+        - GET
+        - PUT
+        - DELETE
+    """
+    
+    queryset = User.objects.all()
+    serializer_class = UserSerializer

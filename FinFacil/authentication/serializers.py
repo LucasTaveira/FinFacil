@@ -1,4 +1,4 @@
-from .models import AuthenticationUser
+from .models import AuthenticationUser, User
 from rest_framework import serializers
 
 class AuthenticationUserSerializer(serializers.ModelSerializer):
@@ -8,3 +8,8 @@ class AuthenticationUserSerializer(serializers.ModelSerializer):
             'email',
             'password',
         )
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'
