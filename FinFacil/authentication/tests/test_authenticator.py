@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 
 from authentication.models import AuthenticationUser
-class AuthenticatorTests(APITestCase):
+class AuthenticatorTestCase(APITestCase):
     def setUp(self):
         self.Authenticator = AuthenticationUser.objects.create(
             email='email', 

@@ -25,8 +25,10 @@ class User(models.Model):
     first_name = models.CharField(max_length=150, null=False)
     last_name = models.CharField(max_length=150, null=True, blank=True)
     whatsApp = models.CharField(max_length=30, null=True, blank=True)
-    user_type = models.CharField(max_length=1, null=False, choices=UserType.choices, default=UserType.user)
+    user_type = models.CharField(max_length=1, blank=True, choices=UserType.choices, default=UserType.user)
+    api_key = models.CharField(max_length=50, null=True, blank=True)
     authenticator = models.ForeignKey(AuthenticationUser, on_delete=models.CASCADE)
+    
     
     def __str__(self):
         return f'{self.first_name} - {self.last_name} - {self.user_type}'
