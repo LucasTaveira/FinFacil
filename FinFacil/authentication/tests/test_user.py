@@ -43,8 +43,12 @@ class UserTestCase(FinFacilTestCase):
             "first_name": "test",
         }
         
-        response = self.logged_django_client.patch(f'{self.base_url}{self.User.id}/', data, content_type='application/json')
-        import pdb; pdb.set_trace()
+        response = self.logged_django_client.patch(
+            f'{self.base_url}{self.User.id}/', 
+            data, 
+            content_type='application/json'
+        )
+
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertCountEqual(response.data['first_name'], data['first_name'])
     

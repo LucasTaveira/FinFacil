@@ -4,15 +4,23 @@ from authentication.models import User
 
 class UserIncome(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    amount = models.DecimalField(
+        max_digits=10, 
+        decimal_places=2, 
+        null=True, 
+        blank=True
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
-    def save(self):
-        user_income_itens = UserIncomeItens.objects.filter(user_income=self)
-        total_amount = sum([i.amount for i in user_income_itens])
-        self.amount = total_amount
-        return super().save()
+    def save(self, *args, **kwargs):
+        user_income_itens = UserIncomeItens.objects.filter(
+            user_income__id=self.id
+        )
+        if user_income_itens:
+            total_amount = sum([i.amount for i in user_income_itens])
+            self.amount = total_amount
+        super().save()
     def __str__(self):
         return f'{self.id} - {self.user} - {self.amount}'
 

@@ -7,15 +7,19 @@ class AuthenticationUser(AbstractUser):
     superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
-    username = models.CharField(max_length=1, blank=True, null=True, unique=False)
+    username = models.CharField(max_length=1, blank=True, null=True, unique=False)    
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['password']
     
+    @property
+    def authenticated_user(self):
+        return User.objects.filter(authenticator=self).first()
+
     def save(self, *args, **kwargs):
         if self.pk is None or 'password' in self.__dict__ and not self.password.startswith('pbkdf2_'):
             self.set_password(self.password)
         super().save(*args, **kwargs)
-        
+
 
 class User(models.Model):
     class UserType(models.TextChoices):
