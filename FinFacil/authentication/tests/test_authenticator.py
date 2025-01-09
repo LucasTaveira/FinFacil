@@ -9,7 +9,7 @@ class AuthenticatorTestCase(APITestCase):
             email='email', 
             password='password'
         )
-        self.base_url =  reverse('sign_in')
+        self.base_url =  reverse('sign_up')
     def test_create_user(self):
         "Should test sucess create user"
         

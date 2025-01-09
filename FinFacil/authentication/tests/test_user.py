@@ -11,7 +11,7 @@ class UserTestCase(FinFacilTestCase):
             first_name='first_name', 
             authenticator=self.authenticator
         )
-        self.User = User.objects.create(
+        self.User2 = User.objects.create(
             first_name='first_name2', 
             authenticator=self.authenticator
         )
@@ -43,15 +43,15 @@ class UserTestCase(FinFacilTestCase):
             "first_name": "test",
         }
         
-        response = self.logged_django_client.put(f'{self.base_url}{self.User.id}/', data, format='json')
-        
+        response = self.logged_django_client.patch(f'{self.base_url}{self.User.id}/', data, content_type='application/json')
+        import pdb; pdb.set_trace()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertCountEqual(response.data['first_name'] == data['first_name'])
+        self.assertCountEqual(response.data['first_name'], data['first_name'])
     
     def test_delete_user(self):
         "Should test sucess delete user"
         
-        response = self.logged_django_client.delete(f'{self.base_url}{self.User.id}/')
+        response = self.logged_django_client.delete(f'{self.base_url}{self.User2.id}/')
         
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
     
