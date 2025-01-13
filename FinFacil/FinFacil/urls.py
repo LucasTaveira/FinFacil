@@ -30,6 +30,7 @@ from rest_framework import routers
 from control.views.income_view import UserIncomeItensView, UserIncomeView
 from control.views.spending_plan_view import SpendingPlanItensView, SpendingPlanView
 from authentication.views import AuthenticationUserView, UserViewSet
+from control.views.monthly_expense_view import MonthlyExpenseItensView, MonthlyExpenseView
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -50,6 +51,8 @@ router.register(r'user/income', UserIncomeView, basename='user-income')
 router.register(r'user/income-itens', UserIncomeItensView, basename='user-income-itens')
 router.register(r'spending-plan', SpendingPlanView, basename='spending-plan')
 router.register(r'spending-plan-itens', SpendingPlanItensView, basename='spending-plan-itens')
+router.register(r'monthly-expense', MonthlyExpenseView, basename='monthly-expense')
+router.register(r'monthly-expense-itens', MonthlyExpenseItensView, basename='monthly-expense-itens')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
