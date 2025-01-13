@@ -21,14 +21,13 @@ class SpendingPlanView(viewsets.ReadOnlyModelViewSet):
     
 
 class SpendingPlanItensView(viewsets.ModelViewSet):
-    queryset = SpendingPlanItens.objects.all()
     serializer_class = SpendingPlanItensSerializer
     
-    # def get_queryset(self):
-    #     try:
-    #         self.request.user.is_authenticated
-    #         return SpendingPlanItens.objects.filter(
-    #             spending_plan__user=self.request.user.authenticated_user
-    #         )
-    #     except User.DoesNotExist:
-    #         return super().get_queryset()
+    def get_queryset(self):
+        try:
+            self.request.user.is_authenticated
+            return SpendingPlanItens.objects.filter(
+                spending_plan__user=self.request.user.authenticated_user
+            )
+        except User.DoesNotExist:
+            return super().get_queryset()
