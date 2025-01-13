@@ -11,18 +11,18 @@ class History(models.Model):
 
 class UserIncomeItensHistory(models.Model):
     user_income_itens = models.ForeignKey(UserIncomeItens, on_delete=models.CASCADE)
-    History = models.ForeignKey(History, on_delete=models.CASCADE)
+    history = models.ForeignKey(History, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
 class SpendingPlanItensHistory(models.Model):
     spending_plan_itens = models.ForeignKey(SpendingPlanItens, on_delete=models.CASCADE)
-    History = models.ForeignKey(History, on_delete=models.CASCADE)
+    history = models.ForeignKey(History, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
 class MonthlyExpenseItensHistory(models.Model):
     monthly_expense_itens = models.ForeignKey(MonthlyExpenseItens, on_delete=models.CASCADE)
-    History = models.ForeignKey(History, on_delete=models.CASCADE)
+    history = models.ForeignKey(History, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
