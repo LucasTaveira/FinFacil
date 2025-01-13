@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import UserIncome, UserIncomeItens
+from ..models.incomes import UserIncome, UserIncomeItens
 
 class UserIncomeSerializer(serializers.ModelSerializer):
     class Meta:

@@ -27,7 +27,8 @@ from rest_framework_simplejwt.views import (
 )
 from rest_framework import routers
 
-from control.views import UserIncomeItensView, UserIncomeView
+from control.views.income_view import UserIncomeItensView, UserIncomeView
+from control.views.spending_plan_view import SpendingPlanItensView, SpendingPlanView
 from authentication.views import AuthenticationUserView, UserViewSet
 
 schema_view = get_schema_view(
@@ -45,8 +46,10 @@ schema_view = get_schema_view(
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet, basename='users')
-router.register(r'user-income', UserIncomeView, basename='user-income')
-router.register(r'user-income-itens', UserIncomeItensView, basename='user-income-itens')
+router.register(r'user/income', UserIncomeView, basename='user-income')
+router.register(r'user/income-itens', UserIncomeItensView, basename='user-income-itens')
+router.register(r'spending-plan', SpendingPlanView, basename='spending-plan')
+router.register(r'spending-plan-itens', SpendingPlanItensView, basename='spending-plan-itens')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

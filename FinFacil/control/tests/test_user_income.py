@@ -4,7 +4,7 @@ from rest_framework import status
 from utils.tests.utils_class import FinFacilTestCase
 
 from authentication.models import User
-from control.models import UserIncome, UserIncomeItens
+from control.models.incomes import UserIncome, UserIncomeItens
 
 class UserIncomeTestCase(FinFacilTestCase):
     def setUp(self):

@@ -1,8 +1,7 @@
 from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticated
 
-from .models import User, UserIncome, UserIncomeItens
-from .serializers import UserIncomeSerializer, UserIncomeItensSerializer
+from ..models.incomes import User, UserIncome, UserIncomeItens
+from ..serializers.income_serializer import UserIncomeSerializer, UserIncomeItensSerializer
 
 class UserIncomeView(viewsets.ReadOnlyModelViewSet):
     queryset = UserIncome.objects.all()
