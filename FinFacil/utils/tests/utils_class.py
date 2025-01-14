@@ -32,3 +32,24 @@ class FinFacilTestCase(APITestCase):
         )
         self.logged_django_client.login(email=self.authenticator.email, password=password)
         
+        ## User admin
+        
+        password_admin = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
+        self.authenticator_admin = AuthenticationUser.objects.create(
+            email='usertest_admin@gmail.com', 
+            password=password_admin,
+            is_staff=True
+        )
+        self.login_url_admin = reverse('token_obtain_pair')
+        self.django_client_admin = DjangoClient()
+        self.django_client_admin.login(email=self.authenticator_admin.email, password=password)
+        login_data_admin = {"email": self.authenticator_admin.email, "password": password_admin}
+
+        token_admin = self.django_client_admin.post(self.login_url, data=login_data_admin)
+        self.access_token_admin = token_admin.data.get('access')
+        
+        self.logged_django_client_admin = DjangoClient(
+            headers={
+                'Authorization': f'Bearer {self.access_token_admin}'}
+        )
+        self.logged_django_client_admin.login(email=self.authenticator_admin.email, password=password_admin) 
