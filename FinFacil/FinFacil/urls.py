@@ -41,7 +41,10 @@ from control.views.history_view import (
     MonthlyExpenseItensHistoryView,
     SpendingPlanItensHistoryView,
 )
-
+from control.views.objective_list_view import (
+    ObjectiveListView, 
+    ObjectiveListItensView
+)
 schema_view = get_schema_view(
     openapi.Info(
         title="FinFacil API",
@@ -82,6 +85,16 @@ router.register(
     r"spending-plan-itens-history",
     SpendingPlanItensHistoryView,
     basename="spending-plan-itens-history",
+)
+router.register(
+    r"objective-list", 
+    ObjectiveListView, 
+    basename="objective-list"
+)
+router.register(
+    r"objective-list-itens",
+    ObjectiveListItensView,
+    basename="objective-list-itens"
 )
 
 urlpatterns = [

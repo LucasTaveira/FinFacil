@@ -4,13 +4,15 @@ from ..models.history import (
     History, 
     UserIncomeItensHistory, 
     MonthlyExpenseItensHistory, 
-    SpendingPlanItensHistory
+    SpendingPlanItensHistory,
+    ObjectiveListItensHistory
 )
 from ..serializers.history_serializer import (
     HistorySerializer,
     UserIncomeItensHistorySerializer,
     MonthlyExpenseItensHistorySerializer,
-    SpendingPlanItensHistorySerializer
+    SpendingPlanItensHistorySerializer,
+    ObjectiveListItensHistorySerializer
 )
 
 class HistoryView(viewsets.ModelViewSet):
@@ -34,3 +36,7 @@ class MonthlyExpenseItensHistoryView(viewsets.ReadOnlyModelViewSet):
 class SpendingPlanItensHistoryView(viewsets.ReadOnlyModelViewSet):
     queryset = SpendingPlanItensHistory.objects.all()
     serializer_class = SpendingPlanItensHistorySerializer
+
+class ObjectiveListItensHistoryView(viewsets.ReadOnlyModelViewSet):
+    queryset = ObjectiveListItensHistory.objects.all()
+    serializer_class = ObjectiveListItensHistorySerializer
