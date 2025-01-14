@@ -5,6 +5,7 @@ from ..models.history import (
     UserIncomeItensHistory,
     SpendingPlanItensHistory,
     MonthlyExpenseItensHistory,
+    ObjectiveListItensHistory
 )
 
 
@@ -29,4 +30,9 @@ class SpendingPlanItensHistorySerializer(serializers.ModelSerializer):
 class MonthlyExpenseItensHistorySerializer(serializers.ModelSerializer):
     class Meta:
         model = MonthlyExpenseItensHistory
+        fields = "__all__"
+
+class ObjectiveListItensHistorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ObjectiveListItensHistory
         fields = "__all__"
